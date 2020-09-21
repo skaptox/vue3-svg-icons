@@ -1,0 +1,4 @@
+# Why clarity wasn't included..
+# IMHO it's stupid af to have a ts file that has raw svg code.. like umm.. what on earth is that
+# Example: https://github.com/vmware/clarity/blob/master/packages/core/src/icon/shapes/wrench.ts
+
