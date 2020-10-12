@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`basic: js 1`] = `
+"import { resolveComponent, openBlock, createBlock, createApp } from 'vue';
+
+var script = {};
+
+function render(_ctx, _cache, $props, $setup, $data, $options) {
+  const _component_vue3_svg = resolveComponent(\\"vue3-svg\\");
+
+  return (openBlock(), createBlock(_component_vue3_svg, { \\"500px.svg\\": \\"\\" }))
+}
+
+script.render = render;
+script.__file = \\"__tests__/fixtures/basic/App.vue\\";
+
+createApp(script).mount(\\"body\\");
+"
+`;

@@ -1,0 +1,99 @@
+{
+  "name": "vue3-svg-icons",
+  "version": "0.0.1",
+  "description": "Mega compilation of svg icons. Ever get tired of all that stupid bloat from other icon packages?",
+  "keywords": [
+    "vue",
+    "vue3",
+    "svg",
+    "icons"
+  ],
+  "homepage": "https://github.com/pathscale/vue3-svg-icons#readme",
+  "bugs": {
+    "url": "https://github.com/pathscale/vue3-svg-icons/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pathscale/vue3-svg-icons.git"
+  },
+  "license": "MIT",
+  "author": "Anton Kudryavtsev <boblobl4@gmail.com>",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "prebuild": "shx rm -rf dist",
+    "build": "rollup -c --environment NODE_ENV:production",
+    "commit": "commit",
+    "prelint": "prettier -l --write .",
+    "lint": "eslint --ext .ts,.js --fix .",
+    "prepublishOnly": "npm run build",
+    "pretest": "npm run lint",
+    "test": "jest"
+  },
+  "dependencies": {
+    "@babel/parser": "^7.11.5",
+    "@babel/traverse": "^7.11.5",
+    "@rollup/pluginutils": "^4.0.0",
+    "fs-extra": "^9.0.1",
+    "parse5": "^6.0.1",
+    "query-string": "^6.13.5",
+    "resolve": "^1.17.0",
+    "tslib": "^2.0.3"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.11.6",
+    "@babel/plugin-proposal-class-properties": "^7.10.4",
+    "@babel/preset-env": "^7.11.5",
+    "@commitlint/cli": "^11.0.0",
+    "@commitlint/config-angular": "^11.0.0",
+    "@commitlint/prompt-cli": "^11.0.0",
+    "@rollup/plugin-babel": "^5.2.1",
+    "@rollup/plugin-commonjs": "^15.1.0",
+    "@rollup/plugin-json": "^4.1.0",
+    "@rollup/plugin-node-resolve": "^9.0.0",
+    "@rollup/plugin-replace": "^2.3.3",
+    "@rollup/plugin-typescript": "^6.0.0",
+    "@types/babel__traverse": "^7.0.15",
+    "@types/fs-extra": "^9.0.2",
+    "@types/htmlparser2": "^3.10.2",
+    "@types/jest": "^26.0.14",
+    "@types/node": "*",
+    "@types/parse5": "^5.0.3",
+    "@types/resolve": "^1.17.1",
+    "@typescript-eslint/eslint-plugin": "^4.4.1",
+    "@typescript-eslint/parser": "^4.4.1",
+    "@vue/compiler-sfc": "^3.0.0",
+    "builtin-modules": "^3.1.0",
+    "eslint": "^7.11.0",
+    "eslint-config-prettier": "^6.12.0",
+    "eslint-import-resolver-node": "^0.3.4",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-jest": "^24.1.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-unicorn": "^22.0.0",
+    "gh-pages": "^3.1.0",
+    "husky": "^4.3.0",
+    "jest": "^26.5.3",
+    "jest-circus": "^26.5.3",
+    "lint-staged": "^10.4.0",
+    "prettier": "^2.1.2",
+    "rollup": "^2.29.0",
+    "rollup-plugin-dts": "^1.4.13",
+    "rollup-plugin-node-externals": "^2.2.0",
+    "rollup-plugin-vue": "^6.0.0-beta.10",
+    "shx": "^0.3.2",
+    "ts-jest": "^26.4.1",
+    "typescript": "^4.0.3",
+    "vue": "^3.0.0"
+  },
+  "peerDependencies": {
+    "rollup": "^2.2.0"
+  },
+  "engines": {
+    "node": ">=12"
+  }
+}
