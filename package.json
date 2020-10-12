@@ -17,7 +17,7 @@
     "url": "git+https://github.com/pathscale/vue3-svg-icons.git"
   },
   "license": "MIT",
-  "author": "Anton Kudryavtsev <boblobl4@gmail.com>",
+  "author": "PathScale PTD Ltd",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
