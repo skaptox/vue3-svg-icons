@@ -34,7 +34,9 @@ export default (options: Options = {}): Plugin => {
       for await (const node of ast.childNodes as DefaultTreeElement[]) {
         // Skip unrelated tags
         if (node.nodeName !== "vue3-svg") {
-          options.debug && console.log(`VUE3-SVG - UNRELATED (${node.nodeName}):\n`, d(node));
+          options.debug &&
+            console.log(`VUE3-SVG - UNRELATED (${node.nodeName}):\n`, serialize(node));
+
           newChildNodes.push(node);
           continue;
         }
@@ -49,14 +51,16 @@ export default (options: Options = {}): Plugin => {
         const source = await fs.readFile(svg.id, "utf8");
         const { childNodes } = parseFragment(source) as DefaultTreeDocumentFragment;
 
-        options.debug && console.log(`VUE3-SVG - CONVERSION:\n`, d(node), "\nto\n", d(childNodes));
+        options.debug &&
+          console.log(`VUE3-SVG - CONVERSION:\n`, serialize(node), "\nto\n", serialize(childNodes));
+
         newChildNodes.push(...childNodes);
       }
 
       ast.childNodes = newChildNodes;
       const newCode = serialize(ast);
 
-      options.debug && console.log(`VUE3-SVG - NEW CODE:\n`, newCode);
+      options.debug && console.log(`VUE3-SVG - CODE:\n`, code, "\nto\n", newCode);
       return { code: newCode };
     },
   };
