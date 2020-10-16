@@ -8,10 +8,12 @@ import {
   DefaultTreeDocumentFragment,
   DefaultTreeNode,
 } from "parse5";
-// import { inspect } from "util";
+import { inspect } from "util";
 
 import { Options } from "./types";
-import { parseQuery } from "./utils";
+import { humanlizePath, parseQuery } from "./utils";
+
+const d = (s: unknown) => inspect(s, { showHidden: false, depth: null, maxArrayLength: null });
 
 export default (options: Options = {}): Plugin => {
   const isIncluded = createFilter(options.include, options.exclude);
@@ -26,12 +28,13 @@ export default (options: Options = {}): Plugin => {
       if (query.type !== "template") return null;
 
       const ast = parseFragment(code) as DefaultTreeDocumentFragment;
-      // console.log(inspect(ast, { depth: null, maxArrayLength: null }));
+      options.debug && console.log(`VUE3-SVG - AST (${humanlizePath(id)}):\n`, d(ast));
 
       const newChildNodes: DefaultTreeNode[] = [];
       for await (const node of ast.childNodes as DefaultTreeElement[]) {
         // Skip unrelated tags
         if (node.nodeName !== "vue3-svg") {
+          options.debug && console.log(`VUE3-SVG - UNRELATED (${node.nodeName}):\n`, d(node));
           newChildNodes.push(node);
           continue;
         }
@@ -45,11 +48,16 @@ export default (options: Options = {}): Plugin => {
 
         const source = await fs.readFile(svg.id, "utf8");
         const { childNodes } = parseFragment(source) as DefaultTreeDocumentFragment;
+
+        options.debug && console.log(`VUE3-SVG - CONVERSION:\n`, d(node), "\nto\n", d(childNodes));
         newChildNodes.push(...childNodes);
       }
 
       ast.childNodes = newChildNodes;
-      return serialize(ast);
+      const newCode = serialize(ast);
+
+      options.debug && console.log(`VUE3-SVG - NEW CODE:\n`, newCode);
+      return { code: newCode };
     },
   };
 
