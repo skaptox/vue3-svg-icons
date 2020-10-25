@@ -1,13 +1,5 @@
 <template>
-  <custom-component>
-    <template #header>
-      <h1>Header</h1>
-    </template>
-  </custom-component>
-
-  <p>Hello World!</p>
-
-  <vue3-svg 500px />
+  <v-icon src="./500px.svg" name="my-icon" bundle="bundle1" />
 </template>
 
 <script>
