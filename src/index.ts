@@ -17,7 +17,6 @@ const createSymbol = (code: string, name: string) => {
     .attr("viewBox", svgMarkup.attr("viewBox") as string)
     .append(svgMarkup.children());
 
-  console.log("SAVING SYMBOL WITH CODE", markup.xml("symbol"));
   return markup.xml("symbol");
 };
 
@@ -55,6 +54,9 @@ export default (options: Options = {}): Plugin => {
 
       tags.map(async (_, tag) => {
         if (!tag.attribs) return;
+
+        if (!("src" in tag.attribs) || !("bundle" in tag.attribs) || !("name" in tag.attribs))
+          this.error("wrong props passed to v-icon")
 
         const file = await this.resolve(tag.attribs.src, id, {
           skipSelf: true,
